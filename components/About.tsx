@@ -24,7 +24,7 @@ export default function About() {
                                 className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
                             />
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 to-transparent p-8 text-white">
-                                <p className="font-serif text-2xl font-bold">Av. Mehmet Tuğrul</p>
+                                <p className="font-serif text-2xl font-bold">Av. Muhammet Fatih Tuğrul</p>
                                 <p className="text-sm opacity-80">Kurucu Ortak</p>
                             </div>
                         </div>
