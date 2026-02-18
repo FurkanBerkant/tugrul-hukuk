@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { siteConfig } from "../config/site";
 
 export default function Contact() {
+    const { address, phones, email } = siteConfig;
+
     return (
         <section id="contact" className="py-24 bg-primary text-white relative">
             <div className="container mx-auto px-4">
@@ -30,8 +33,9 @@ export default function Contact() {
                                 <div>
                                     <h4 className="font-serif font-bold text-lg mb-1">Adres</h4>
                                     <p className="text-gray-400 text-sm leading-relaxed">
-                                        Kale Mahallesi, Cumhuriyet Meydanı No: 10/4<br />
-                                        55030 İlkadım/Samsun
+                                        {address.line1}
+                                        <br />
+                                        {address.postalCode} {address.district}/{address.city}
                                     </p>
                                 </div>
                             </div>
@@ -42,8 +46,11 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h4 className="font-serif font-bold text-lg mb-1">Telefon</h4>
-                                    <p className="text-gray-400 text-sm">+90 (312) 000 00 00</p>
-                                    <p className="text-gray-400 text-sm">+90 (500) 000 00 00</p>
+                                    {phones.map((phone) => (
+                                        <p key={phone} className="text-gray-400 text-sm">
+                                            {phone}
+                                        </p>
+                                    ))}
                                 </div>
                             </div>
 
@@ -53,7 +60,7 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <h4 className="font-serif font-bold text-lg mb-1">E-Posta</h4>
-                                    <p className="text-gray-400 text-sm">info@tugrulhukuk.com</p>
+                                    <p className="text-gray-400 text-sm">{email}</p>
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import { ArrowUp } from "lucide-react";
+import { siteConfig } from "../config/site";
 
 export default function Footer() {
     const scrollToTop = () => {
@@ -19,19 +20,22 @@ export default function Footer() {
                             <Logo isFooter />
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
-                            Samsun merkezli hukuk büromuz, müvekkillerine şeffaf, güvenilir ve çözüm odaklı hukuki danışmanlık hizmeti sunmaktadır.
+                            {siteConfig.firmName}, Samsun&apos;da faaliyet gösteren bir avukatlık ve danışmanlık bürosudur.
                         </p>
                         <div className="text-xs text-gray-500">
-                            © 2024 Tuğrul Hukuk & Danışmanlık. Tüm hakları saklıdır.
+                            © 2024 {siteConfig.firmName}. Tüm hakları saklıdır.
                         </div>
                     </div>
 
                     <div>
                         <h3 className="text-accent font-bold text-sm tracking-widest mb-6">HIZLI MENÜ</h3>
                         <ul className="space-y-3">
-                            {['Ana Sayfa', 'Faaliyet Alanları', 'Kurumsal', 'İletişim'].map((item) => (
+                            {['Ana Sayfa', 'Faaliyet Alanları', 'Hakkımızda', 'İletişim'].map((item) => (
                                 <li key={item}>
-                                    <Link href={`#${item === 'Ana Sayfa' ? 'hero' : item === 'Faaliyet Alanları' ? 'practice-areas' : item === 'Kurumsal' ? 'about' : 'contact'}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                                    <Link
+                                        href={`#${item === 'Ana Sayfa' ? 'hero' : item === 'Faaliyet Alanları' ? 'practice-areas' : item === 'Hakkımızda' ? 'about' : 'contact'}`}
+                                        className="relative inline-block text-gray-400 hover:text-white transition-colors text-sm after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full"
+                                    >
                                         {item}
                                     </Link>
                                 </li>
@@ -42,18 +46,12 @@ export default function Footer() {
                     <div>
                         <h3 className="text-accent font-bold text-sm tracking-widest mb-6">ÇALIŞMA SAATLERİ</h3>
                         <ul className="space-y-3 text-sm text-gray-400">
-                            <li className="flex justify-between">
-                                <span>Pazartesi - Cuma</span>
-                                <span>09:00 - 18:00</span>
-                            </li>
-                            <li className="flex justify-between">
-                                <span>Cumartesi</span>
-                                <span>10:00 - 14:00</span>
-                            </li>
-                            <li className="flex justify-between">
-                                <span>Pazar</span>
-                                <span>Kapalı</span>
-                            </li>
+                            {siteConfig.workingHours.map((item) => (
+                                <li key={item.label} className="flex justify-between">
+                                    <span>{item.label}</span>
+                                    <span>{item.value}</span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

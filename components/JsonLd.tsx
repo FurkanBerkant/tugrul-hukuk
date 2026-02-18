@@ -1,18 +1,20 @@
+import { siteConfig } from "../config/site";
+
 export default function JsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "LegalService",
-        "name": "Tuğrul Hukuk & Danışmanlık",
+        "name": siteConfig.firmName,
         "image": "https://tugrulhukuk.com/hero-bg.jpg",
-        "url": "https://tugrulhukuk.com",
-        "telephone": "+905000000000",
+        "url": siteConfig.websiteUrl,
+        "telephone": siteConfig.whatsappNumber,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Kale Mahallesi, Cumhuriyet Meydanı No: 10/4",
-            "addressLocality": "İlkadım",
-            "addressRegion": "Samsun",
-            "postalCode": "55030",
-            "addressCountry": "TR"
+            "streetAddress": siteConfig.address.line1,
+            "addressLocality": siteConfig.address.district,
+            "addressRegion": siteConfig.address.city,
+            "postalCode": siteConfig.address.postalCode,
+            "addressCountry": siteConfig.address.countryCode
         },
         "geo": {
             "@type": "GeoCoordinates",
