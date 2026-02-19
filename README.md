@@ -24,7 +24,7 @@ Bu site sadece kod yazılarak değil; vizyon, tasarım estetiği ve yapay zeka o
 
 1. Depoyu kopyalayın.
 2. `npm install` ile bağımlılıkları yükleyin.
-3. `.env` dosyasını oluşturun (Örnek değişkenler `.env` dosyasında mevcuttur).
+3. `.env` dosyasını oluşturun (Örnek değişkenler `.env.example` dosyasında mevcuttur).
 4. `npm run dev` ile vibe'ı başlatın.
 
 ---
