@@ -1,6 +1,6 @@
 # ⚖️ Tuğrul Hukuk & Danışmanlık
 
-Bu proje, modern bir hukuk bürosu için **Senior Product Manager** gözüyle tasarlanmış, **Vibe Coding** felsefesiyle inşa edilmiş ve her detayı titizlikle işlenmiş premium bir web sitesidir.
+Bu proje, modern bir hukuk bürosu için tasarlandı, **Vibe Coding** felsefesiyle inşa edilmiş ve her detayı titizlikle işlenmiş premium bir web sitesidir.
 
 ## ✨ Nedir Bu "Vibe Coding"?
 Bu site sadece kod yazılarak değil; vizyon, tasarım estetiği ve yapay zeka ortaklığıyla (AI-driven development) hayata geçirildi. Geleneksel yazılım süreçlerinin ötesine geçerek, projenin "ruhuna" ve "hissiyatına" odaklanan bir yaklaşımla geliştirildi.
@@ -24,7 +24,7 @@ Bu site sadece kod yazılarak değil; vizyon, tasarım estetiği ve yapay zeka o
 
 1. Depoyu kopyalayın.
 2. `npm install` ile bağımlılıkları yükleyin.
-3. `.env` dosyasını oluşturun (Örnek değişkenler `.env` dosyasında mevcuttur).
+3. `.env` dosyasını oluşturun (Örnek değişkenler `.env.example` dosyasında mevcuttur).
 4. `npm run dev` ile vibe'ı başlatın.
 
 ---
