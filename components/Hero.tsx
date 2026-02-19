@@ -20,24 +20,33 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="container mx-auto px-4 z-20 text-center md:text-left">
-                <div className="max-w-4xl">
+            <div className="container mx-auto px-6 z-20 text-center md:text-left">
+                <div className="max-w-3xl">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="inline-block py-1 px-3 border border-accent/50 rounded-full text-accent text-sm font-semibold tracking-wide mb-6">
-                            Hukuk Bürosu
+                        <span className="inline-block py-1.5 px-4 border border-accent/40 rounded-full text-accent text-xs font-bold tracking-[0.2em] uppercase mb-8">
+                            Hukuk & Danışmanlık
                         </span>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight mb-4">
-                            Tuğrul Hukuk ve Danışmanlık
+                        <h1 className="mb-10">
+                            <div className="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center md:text-left">
+                                TUĞRUL HUKUK
+                            </div>
+                            <div className="flex items-center justify-center md:justify-start gap-6 my-4">
+                                <span className="hidden md:block h-px w-16 bg-accent/70" />
+                                <span className="text-xl md:text-2xl lg:text-3xl font-serif italic text-accent/80 tracking-[0.2em] uppercase">
+                                    ve
+                                </span>
+                                <span className="hidden md:block h-px w-16 bg-accent/70" />
+                            </div>
+                            <div className="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center md:text-left">
+                                DANIŞMANLIK
+                            </div>
                         </h1>
-                        <p className="text-lg md:text-xl font-light text-gray-200 mb-2">
-                            Avukatlık ve danışmanlık bürosu
-                        </p>
-                        <p className="text-gray-300 text-base md:text-lg font-light leading-relaxed mb-10 max-w-2xl">
-                            Bireysel ve kurumsal müvekkillere, ihtiyaçlarına uygun hukuki danışmanlık ve dava takibi hizmetleri sunmaktayız.
+                        <p className="text-gray-300 text-base md:text-lg font-light leading-relaxed mb-10 max-w-2xl border-l-2 border-accent/30 pl-6 mx-auto md:mx-0">
+                            Tuğrul Hukuk ve Danışmanlık, Samsun&apos;da faaliyet gösteren bir hukuk bürosudur.
                         </p>
                     </motion.div>
 
@@ -45,20 +54,20 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="flex flex-col md:flex-row gap-4 justify-center md:justify-start"
+                        className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start"
                     >
                         <a
                             href="#contact"
-                            className="px-8 py-4 bg-accent hover:bg-yellow-600 text-white rounded-lg font-semibold shadow-lg transition-transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                            className="px-10 py-4 bg-accent hover:bg-accent/90 text-white rounded-none font-bold tracking-[0.2em] uppercase shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center gap-3 group text-xs md:text-sm"
                         >
                             İletişime Geç
-                            <ArrowRight size={20} />
+                            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </a>
                         <a
-                            href="#about"
-                            className="px-8 py-4 border-2 border-white/20 hover:border-white text-white rounded-lg font-semibold transition-colors hover:bg-white/5 flex items-center justify-center"
+                            href="#practice-areas"
+                            className="px-10 py-4 border border-white/30 hover:border-accent text-white rounded-none font-bold tracking-[0.2em] uppercase transition-all hover:bg-white/5 flex items-center justify-center text-xs md:text-sm"
                         >
-                            Hakkımızda
+                            Faaliyet Alanlarımız
                         </a>
                     </motion.div>
                 </div>

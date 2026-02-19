@@ -57,7 +57,8 @@ export default function Header() {
 
         const headerHeight = headerRef.current?.offsetHeight ?? 0;
         const rect = target.getBoundingClientRect();
-        const offset = window.scrollY + rect.top - headerHeight;
+        // Başlık, hedef bölümün tam üstünü kapatmasın diye küçük bir boşluk bırak.
+        const offset = window.scrollY + rect.top - headerHeight + 8;
 
         window.scrollTo({
             top: offset,
@@ -158,7 +159,9 @@ export default function Header() {
                                 </button>
                             ))}
                             <a
-                                href="https://wa.me/905000000000"
+                                href={`https://wa.me/${siteConfig.whatsappNumber.replace(/[^0-9]/g, "")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="flex items-center justify-center space-x-2 bg-accent text-white py-4 rounded-xl text-lg font-semibold mt-4"
                             >
                                 <MessageCircle size={24} />

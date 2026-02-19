@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { siteConfig } from "../config/site";
 
 export default function Contact() {
     const { address, phones, email } = siteConfig;
+    const mapsLabel = "Tuğrul Hukuk ve Danışmanlık";
+    const mapsQuery = `${mapsLabel}, ${address.line1}, ${address.district}/${address.city}`;
+    const mapsAppUrl = "https://maps.app.goo.gl/scQ69MFSG6BagHwS8";
+    const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&output=embed`;
 
     return (
         <section id="contact" className="py-24 bg-primary text-white relative">
@@ -17,109 +21,67 @@ export default function Contact() {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 1 }}
                     >
-                        <h2 className="text-accent font-bold tracking-widest text-sm mb-3">İLETİŞİM</h2>
-                        <h3 className="text-4xl font-serif font-bold mb-8">Bize Ulaşın</h3>
-                        <p className="text-gray-300 mb-12 leading-relaxed">
-                            Hukuki sorunlarınız için profesyonel destek almak istiyorsanız, iletişim formunu doldurabilir veya doğrudan bize ulaşabilirsiniz.
-                        </p>
+                        <span className="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-4 block">İLETİŞİM</span>
+                        <h3 className="text-3xl md:text-4xl font-serif font-black mb-10 leading-tight">İletişim Bilgileri</h3>
 
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-4">
-                                <div className="p-4 bg-white/5 rounded-lg text-accent">
-                                    <MapPin size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-serif font-bold text-lg mb-1">Adres</h4>
-                                    <p className="text-gray-400 text-sm leading-relaxed">
-                                        {address.line1}
-                                        <br />
-                                        {address.postalCode} {address.district}/{address.city}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="p-4 bg-white/5 rounded-lg text-accent">
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-serif font-bold text-lg mb-1">Telefon</h4>
-                                    {phones.map((phone) => (
-                                        <p key={phone} className="text-gray-400 text-sm">
-                                            {phone}
+                        <div className="space-y-10 mb-16">
+                            {[
+                                { icon: MapPin, title: "Adres", text: `${address.line1}, ${address.district}/${address.city}` },
+                                { icon: Phone, title: "Telefon", text: phones.join(" / ") },
+                                { icon: Mail, title: "E-mail", text: email }
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-start gap-6 group">
+                                    <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 font-bold uppercase text-[10px]">
+                                        <item.icon size={20} strokeWidth={1.5} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-serif font-bold text-lg mb-1 tracking-tight">{item.title}</h4>
+                                        <p className="text-gray-400 text-sm font-light leading-relaxed max-w-xs transition-colors group-hover:text-white">
+                                            {item.text}
                                         </p>
-                                    ))}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="p-4 bg-white/5 rounded-lg text-accent">
-                                    <Mail size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-serif font-bold text-lg mb-1">E-Posta</h4>
-                                    <p className="text-gray-400 text-sm">{email}</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
 
-                        {/* Map Placeholder */}
-                        <div className="mt-12 w-full h-48 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center text-gray-500 text-sm">
-                            Google Maps Entegrasyonu
-                        </div>
                     </motion.div>
 
-                    {/* Contact Form */}
+                    {/* Google Maps */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="bg-white text-primary p-8 md:p-12 rounded-2xl shadow-2xl"
+                        transition={{ duration: 1 }}
+                        className="bg-white p-6 md:p-8 shadow-[0_40px_80px_rgba(0,0,0,0.16)] rounded-2xl relative"
                     >
-                        <h3 className="text-2xl font-serif font-bold mb-6">Randevu Talep Formu</h3>
-                        <form className="space-y-6">
-                            <div className="space-y-1">
-                                <label className="text-sm font-semibold text-gray-700">Ad Soyad</label>
-                                <input
-                                    type="text"
-                                    className="w-full p-4 bg-offwhite border-none rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all placeholder:text-gray-400"
-                                    placeholder="Adınız Soyadınız"
-                                />
-                            </div>
+                        <div className="absolute top-0 left-0 w-full h-1.5 bg-accent rounded-t-2xl" />
+                        <h3 className="text-3xl font-serif font-black text-primary mb-6 tracking-tight">Harita</h3>
 
-                            <div className="space-y-1">
-                                <label className="text-sm font-semibold text-gray-700">Telefon</label>
-                                <input
-                                    type="tel"
-                                    className="w-full p-4 bg-offwhite border-none rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all placeholder:text-gray-400"
-                                    placeholder="05XX XXX XX XX"
-                                />
-                            </div>
+                        <div className="relative w-full overflow-hidden rounded-xl border border-gray-100 shadow-md">
+                            <iframe
+                                title="Tuğrul Hukuk Konum"
+                                src={mapsSrc}
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full h-[360px] md:h-[440px]"
+                            />
+                        </div>
 
-                            <div className="space-y-1">
-                                <label className="text-sm font-semibold text-gray-700">Mesajınız</label>
-                                <textarea
-                                    rows={4}
-                                    className="w-full p-4 bg-offwhite border-none rounded-lg focus:ring-2 focus:ring-accent outline-none transition-all placeholder:text-gray-400 resize-none"
-                                    placeholder="Hukuki sorununuz hakkında kısa bilgi..."
-                                />
-                            </div>
-
-                            <button
-                                type="button"
-                                className="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
-                            >
-                                GÖNDER
-                                <Send size={18} />
-                            </button>
-
-                            <p className="text-xs text-center text-gray-400 mt-4">
-                                Gönderilen bilgiler gizlilik politikamız çerçevesinde korunmaktadır.
+                        <div className="mt-6 flex items-center justify-between gap-4">
+                            <p className="text-[11px] tracking-[0.15em] uppercase text-gray-400">
+                                {mapsQuery}
                             </p>
-                        </form>
+                            <a
+                                href={mapsAppUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[11px] font-bold tracking-[0.2em] uppercase text-primary hover:text-accent transition-colors"
+                            >
+                                Google Maps’te Aç
+                            </a>
+                        </div>
                     </motion.div>
 
                 </div>

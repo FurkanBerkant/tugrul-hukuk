@@ -1,20 +1,20 @@
 export const siteConfig = {
   firmName: "Tuğrul Hukuk ve Danışmanlık",
   address: {
-    line1: "Kale Mahallesi, Cumhuriyet Meydanı No: 10/4",
-    postalCode: "55030",
+    line1: "Kılıçdede Mah. Saadet Cad. No:136 Firuze Apt. Kat:3 Daire:3",
+    postalCode: "",
     district: "İlkadım",
     city: "Samsun",
     countryCode: "TR",
   },
-  phones: ["+90 (312) 000 00 00", "+90 (500) 000 00 00"],
-  email: "info@tugrulhukuk.com",
+  phones: ["0540 819 65 55"],
+  email: "av.muhammetfatihtugrul@gmail.com",
   workingHours: [
-    { label: "Pazartesi - Cuma", value: "09:00 - 18:00" },
-    { label: "Cumartesi", value: "10:00 - 14:00" },
+    { label: "Pazartesi - Cuma", value: "08:00 - 17:00" },
+    { label: "Cumartesi", value: "09:00 - 14:00" },
     { label: "Pazar", value: "Kapalı" },
   ],
-  whatsappNumber: "+905000000000",
+  whatsappNumber: "+905408196555",
   websiteUrl: "https://tugrulhukuk.com",
 };
 

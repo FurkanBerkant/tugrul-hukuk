@@ -33,28 +33,47 @@ export default function Logo({ isScrolled, isFooter }: LogoProps) {
 
             {/* Text Stack */}
             <div className="flex flex-col leading-none">
-                <span className={clsx(
-                    "font-serif font-bold tracking-wide transition-colors",
-                    isFooter ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
-                    textColor
-                )}>
+                <span
+                    className={clsx(
+                        "font-serif font-bold tracking-wide transition-colors",
+                        isFooter ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
+                        textColor
+                    )}
+                >
                     TUĞRUL HUKUK
                 </span>
-                
-                <div className="flex items-center gap-2 mt-1">
-                    <span className={clsx(
-                        "text-[10px] uppercase tracking-widest opacity-80",
-                        subTextColor
-                    )}>
+
+                <div className="flex items-center gap-3 my-1">
+                    <span
+                        className={clsx(
+                            "hidden sm:block h-px flex-1 max-w-[36px] bg-accent/70",
+                            isFooter ? "opacity-80" : "opacity-60"
+                        )}
+                    />
+                    <span
+                        className={clsx(
+                            "text-[9px] sm:text-[10px] uppercase tracking-[0.3em]",
+                            subTextColor
+                        )}
+                    >
                         ve
                     </span>
-                    <span className={clsx(
+                    <span
+                        className={clsx(
+                            "hidden sm:block h-px flex-1 max-w-[36px] bg-accent/70",
+                            isFooter ? "opacity-80" : "opacity-60"
+                        )}
+                    />
+                </div>
+
+                <span
+                    className={clsx(
                         "font-sans font-semibold tracking-[0.2em] text-accent",
                         isFooter ? "text-sm md:text-base" : "text-xs md:text-sm"
-                    )}>
-                        DANIŞMANLIK
-                    </span>
-                </div>
+                    )}
+                >
+                    DANIŞMANLIK
+                </span>
             </div>
         </div>
     );
