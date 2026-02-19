@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "../config/site";
 import JsonLd from "../components/JsonLd";
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({
         <JsonLd />
         {children}
         <FloatingJusticeScale />
+        <Analytics />
       </body>
     </html>
   );
