@@ -61,18 +61,50 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-gray-100">
+                        <motion.div
+                            className="grid grid-cols-3 gap-3 pt-8 border-t border-gray-100"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                visible: {
+                                    transition: {
+                                        staggerChildren: 0.2,
+                                        delayChildren: 0.3
+                                    }
+                                }
+                            }}
+                        >
                             {[
-                                { title: "Dürüstlük", desc: "Tüm süreçlerde şeffaf ve doğru bilgilendirme." },
-                                { title: "Gizlilik", desc: "Müvekkil bilgilerinin mutlak güvenliği." },
-                                { title: "Sadakat", desc: "Müvekkil haklarının her aşamada korunması." }
+                                { title: "Dürüstlük", desc: "Şeffaf bilgilendirme." },
+                                { title: "Gizlilik", desc: "Mutlak güvenlik." },
+                                { title: "Sadakat", desc: "Hakların korunması." }
                             ].map((value, i) => (
-                                <div key={i} className="space-y-2">
-                                    <h4 className="text-sm font-serif font-black text-primary uppercase tracking-widest">{value.title}</h4>
-                                    <p className="text-xs text-gray-400 font-medium leading-relaxed">{value.desc}</p>
-                                </div>
+                                <motion.div
+                                    key={i}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: {
+                                            opacity: 1,
+                                            y: 0,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 100,
+                                                damping: 20
+                                            }
+                                        }
+                                    }}
+                                    whileHover={{
+                                        y: -5,
+                                        transition: { type: "spring", stiffness: 400, damping: 17 }
+                                    }}
+                                    className={`text-center space-y-2 p-3 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-primary/5 group ${i !== 2 ? 'border-r border-gray-100 hover:border-r-transparent' : ''}`}
+                                >
+                                    <h4 className="text-xs md:text-sm font-serif font-black text-primary uppercase tracking-widest px-1 group-hover:text-accent transition-colors duration-300">{value.title}</h4>
+                                    <p className="text-[10px] md:text-xs text-gray-500 font-medium leading-relaxed px-1 font-sans">{value.desc}</p>
+                                </motion.div>
                             ))}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>

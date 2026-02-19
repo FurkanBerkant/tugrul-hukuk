@@ -65,7 +65,7 @@ export default function PracticeAreas() {
                     <div className="w-24 h-1 bg-accent mx-auto rounded-full" />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6">
                     {practices.map((area, index) => (
                         <motion.div
                             key={index}

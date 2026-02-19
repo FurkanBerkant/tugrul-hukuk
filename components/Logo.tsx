@@ -6,11 +6,13 @@ import { clsx } from "clsx";
 interface LogoProps {
     isScrolled?: boolean;
     isFooter?: boolean;
+    isLight?: boolean;
 }
 
-export default function Logo({ isScrolled, isFooter }: LogoProps) {
-    const textColor = isFooter ? "text-white" : isScrolled ? "text-primary" : "text-white";
-    const subTextColor = isFooter ? "text-gray-400" : isScrolled ? "text-primary/70" : "text-white/80";
+export default function Logo({ isScrolled, isFooter, isLight }: LogoProps) {
+    const isActuallyLight = isFooter || isLight || !isScrolled;
+    const textColor = isActuallyLight ? "text-white" : "text-primary";
+    const subTextColor = isActuallyLight ? "text-white/80" : "text-primary/70";
 
     return (
         <div className="flex items-center gap-3">

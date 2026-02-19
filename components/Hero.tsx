@@ -3,7 +3,12 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const JusticeScale = dynamic(() => import("./JusticeScale"), {
+    ssr: false,
+});
 
 
 export default function Hero() {
@@ -82,17 +87,17 @@ export default function Hero() {
                                 Hukuk & Danışmanlık
                             </span>
                             <h1 className="mb-10">
-                                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center lg:text-left drop-shadow-2xl">
+                                <div className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center lg:text-left drop-shadow-2xl">
                                     TUĞRUL HUKUK
                                 </div>
-                                <div className="flex items-center justify-center lg:justify-start gap-6 my-4">
+                                <div className="flex items-center justify-center lg:justify-start gap-4 my-2 md:my-4">
                                     <span className="hidden md:block h-px w-16 bg-accent/70" aria-hidden="true" />
-                                    <span className="text-xl md:text-2xl lg:text-3xl font-serif italic text-accent/80 tracking-[0.2em] uppercase">
+                                    <span className="text-lg md:text-2xl lg:text-3xl font-serif italic text-accent/80 tracking-[0.2em] uppercase">
                                         ve
                                     </span>
                                     <span className="hidden md:block h-px w-16 bg-accent/70" aria-hidden="true" />
                                 </div>
-                                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center lg:text-left drop-shadow-2xl">
+                                <div className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-black text-white leading-snug tracking-tight uppercase text-center lg:text-left drop-shadow-2xl">
                                     DANIŞMANLIK
                                 </div>
                             </h1>
@@ -125,6 +130,13 @@ export default function Hero() {
 
 
                 </div>
+            </div>
+
+            {/* Mobile Justice Scale - Absolute to section to not affect layout */}
+            <div className="absolute bottom-4 right-2 w-32 h-32 sm:w-40 sm:h-40 lg:hidden z-30">
+                <Suspense fallback={null}>
+                    <JusticeScale />
+                </Suspense>
             </div>
         </section>
     );

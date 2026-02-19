@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body
-        className={`${playfair.variable} ${montserrat.variable} antialiased bg-offwhite text-primary selection:bg-accent selection:text-white`}
+        className={`${playfair.variable} ${montserrat.variable} antialiased bg-primary text-primary selection:bg-accent selection:text-white`}
       >
         <Preloader />
         {/* Google Analytics 4 */}

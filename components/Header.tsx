@@ -15,6 +15,17 @@ export default function Header() {
     const headerRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.classList.add("menu-open");
+        } else {
+            document.body.classList.remove("menu-open");
+        }
+        return () => {
+            document.body.classList.remove("menu-open");
+        };
+    }, [isMobileMenuOpen]);
+
+    useEffect(() => {
         const handleScroll = () => {
             const scrollPos = window.scrollY;
             setIsScrolled(scrollPos > 40);
@@ -83,12 +94,13 @@ export default function Header() {
             <header
                 ref={headerRef}
                 className={clsx(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
-                    !isScrolled
+                    "fixed top-0 left-0 right-0 transition-all duration-500 border-b",
+                    isMobileMenuOpen ? "z-[70] bg-transparent border-transparent py-6" : "z-50",
+                    !isScrolled && !isMobileMenuOpen
                         ? "bg-transparent py-6 border-transparent"
-                        : isHeaderDark
+                        : isHeaderDark && !isMobileMenuOpen
                             ? "bg-primary/80 backdrop-blur-lg border-white/10 py-3 shadow-2xl"
-                            : "bg-white/80 backdrop-blur-lg border-gray-100 py-3 shadow-lg"
+                            : !isMobileMenuOpen ? "bg-white/80 backdrop-blur-lg border-gray-100 py-3 shadow-lg" : ""
                 )}
             >
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -98,7 +110,10 @@ export default function Header() {
                         className="group cursor-pointer border-none bg-transparent p-0 active:scale-95 transition-transform"
                         aria-label="Ana Sayfa"
                     >
-                        <Logo isScrolled={!isHeaderDark && isScrolled} />
+                        <Logo
+                            isScrolled={!isHeaderDark && isScrolled}
+                            isLight={isMobileMenuOpen}
+                        />
                     </button>
 
                     {/* Desktop Navigation */}
@@ -152,35 +167,60 @@ export default function Header() {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[60] bg-primary pt-24 px-6 md:hidden flex flex-col h-[100dvh] w-full overflow-hidden"
                     >
-                        <nav className="flex flex-col space-y-6 text-center">
-                            {navLinks.map((link) => (
-                                <button
-                                    key={link.name}
-                                    type="button"
-                                    onClick={() => {
-                                        scrollToSection(link.href);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className="text-2xl font-serif text-primary hover:text-accent font-medium"
-                                >
-                                    {link.name}
-                                </button>
-                            ))}
-                            <a
-                                href={`https://wa.me/${siteConfig.whatsappNumber.replace(/[^0-9]/g, "")}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center space-x-2 bg-accent text-white py-4 rounded-xl text-lg font-semibold mt-4"
+                        {/* Decorative Background Elements */}
+                        <div className="absolute inset-0 opacity-10 pointer-events-none">
+                            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/20 blur-[120px] rounded-full" />
+                            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 blur-[120px] rounded-full" />
+                        </div>
+
+                        <div className="relative flex-1 flex flex-col justify-between py-12">
+                            <nav className="flex flex-col space-y-8 text-center">
+                                {navLinks.map((link, i) => (
+                                    <motion.button
+                                        key={link.name}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        type="button"
+                                        onClick={() => {
+                                            scrollToSection(link.href);
+                                            setIsMobileMenuOpen(false);
+                                        }}
+                                        className="text-2xl font-serif text-white hover:text-accent font-medium tracking-tight"
+                                    >
+                                        {link.name}
+                                    </motion.button>
+                                ))}
+                            </nav>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="space-y-6"
                             >
-                                <MessageCircle size={24} />
-                                <span>WhatsApp İle Ulaşın</span>
-                            </a>
-                        </nav>
+                                <a
+                                    href={`https://wa.me/${siteConfig.whatsappNumber.replace(/[^0-9]/g, "")}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center space-x-3 bg-accent text-white py-5 rounded-none text-base font-bold tracking-widest uppercase shadow-2xl active:scale-95 transition-transform"
+                                >
+                                    <MessageCircle size={20} />
+                                    <span>WhatsApp İle Ulaşın</span>
+                                </a>
+
+                                <div className="text-center">
+                                    <p className="text-white/40 text-[10px] tracking-[0.5em] uppercase font-bold">
+                                        {siteConfig.firmName}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -15,6 +15,18 @@
   --font-sans: var(--font-montserrat);
 }
 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.menu-open {
+  overflow: hidden !important;
+  height: 100vh;
+  touch-action: none;
+}
+
 @layer base {
   body {
     background: var(--background);

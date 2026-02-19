@@ -7,5 +7,5 @@ const JusticeScale = dynamic(() => import("./JusticeScale"), {
 });
 
 export default function FloatingJusticeScale() {
-    return <JusticeScale />;
+    return <JusticeScale className="fixed bottom-6 right-6 w-32 h-32 sm:w-44 sm:h-44 hidden lg:block" />;
 }
