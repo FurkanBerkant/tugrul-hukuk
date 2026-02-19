@@ -38,8 +38,9 @@ export default function Footer() {
                                         <Link
                                             href={`#${item === 'Ana Sayfa' ? 'hero' : item === 'Faaliyet Alanları' ? 'practice-areas' : item === 'Hakkımızda' ? 'about' : 'contact'}`}
                                             className="inline-flex items-center gap-2 text-gray-300 hover:text-accent transition-colors tracking-wide uppercase text-xs"
+                                            aria-label={`${item} bölümüne git`}
                                         >
-                                            <span className="h-px w-4 bg-white/20 group-hover:bg-accent/60" />
+                                            <span className="h-px w-4 bg-white/20 group-hover:bg-accent/60" aria-hidden="true" />
                                             <span>{item}</span>
                                         </Link>
                                     </li>

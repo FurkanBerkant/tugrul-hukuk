@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+import { siteConfig } from "../config/site";
+
 export default function About() {
     return (
-        <section id="about" className="py-32 bg-offwhite relative overflow-hidden">
+        <section id="about" className="py-32 bg-offwhite relative overflow-hidden scroll-mt-24 lg:scroll-mt-20">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-20">
 
@@ -20,9 +22,11 @@ export default function About() {
                         <div className="relative aspect-[4/5] overflow-hidden group">
                             <Image
                                 src="/muhammet-fatih-tugrul.png"
-                                alt="Avukat Muhammet Fatih Tuğrul"
+                                alt={`Avukat ${siteConfig.firmName}`}
                                 fill
-                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                                quality={90}
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100 will-change-transform"
                             />
                             {/* Purely visual accents (no claims/text) */}
                             <div className="absolute inset-0 border-[20px] border-white/10 m-6" />
@@ -43,18 +47,31 @@ export default function About() {
                         <div>
                             <span className="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-4 block">HAKKIMIZDA</span>
                             <h2 className="text-4xl md:text-5xl font-serif font-black text-primary leading-tight mb-8">
-                                Tuğrul Hukuk ve Danışmanlık Hakkında
+                                {siteConfig.firmName} Hakkında
                             </h2>
                             <div className="w-20 h-1.5 bg-accent mb-10" />
                         </div>
 
                         <div className="space-y-6 text-gray-500 font-light leading-relaxed text-lg">
                             <p>
-                                Tuğrul Hukuk ve Danışmanlık, Samsun&apos;da bulunan ofisinde farklı hukuk alanlarında çalışmaktadır.
+                                {siteConfig.firmName}, {siteConfig.address.city} merkezli ofisinde, meslek ilkelerine ve hukuk devleti prensiplerine bağlı bir anlayışla faaliyetlerini sürdürmektedir. Faaliyet alanlarımızda, hukuki süreçlerin şeffaf, güvenilir ve usule uygun bir şekilde yürütülmesi temel önceliğimizdir.
                             </p>
                             <p>
-                                Çalışmalarda müvekkil ile iletişim, gizlilik ve usule uygunluk ilkelerine önem verilmektedir.
+                                Çalışmalarımız, Türkiye Barolar Birliği tarafından belirlenen meslek kuralları ve reklam yasağı yönetmeliği çerçevesinde, yalnızca bilgilendirme amacı taşımaktadır. Müvekkil mahremiyeti ve mesleki sır saklama yükümlülüğü, ofisimizin vazgeçilmez çalışma prensipleri arasındadır.
                             </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 border-t border-gray-100">
+                            {[
+                                { title: "Dürüstlük", desc: "Tüm süreçlerde şeffaf ve doğru bilgilendirme." },
+                                { title: "Gizlilik", desc: "Müvekkil bilgilerinin mutlak güvenliği." },
+                                { title: "Sadakat", desc: "Müvekkil haklarının her aşamada korunması." }
+                            ].map((value, i) => (
+                                <div key={i} className="space-y-2">
+                                    <h4 className="text-sm font-serif font-black text-primary uppercase tracking-widest">{value.title}</h4>
+                                    <p className="text-xs text-gray-400 font-medium leading-relaxed">{value.desc}</p>
+                                </div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>

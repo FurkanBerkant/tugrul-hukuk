@@ -1,15 +1,16 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { siteConfig } from '@/config/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://tugrulhukuk.com'
+    const baseUrl = siteConfig.websiteUrl;
 
     return [
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: 'yearly',
+            changeFrequency: 'monthly',
             priority: 1,
         },
-        // Add other pages if they exist dynamically or statically
-    ]
+        // Add more pages here if they exist, e.g., /about, /practice-areas
+    ];
 }

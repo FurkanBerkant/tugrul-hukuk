@@ -12,7 +12,7 @@ export default function Contact() {
     const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapsQuery)}&output=embed`;
 
     return (
-        <section id="contact" className="py-24 bg-primary text-white relative">
+        <section id="contact" className="py-24 bg-primary text-white relative scroll-mt-16">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
@@ -24,7 +24,7 @@ export default function Contact() {
                         transition={{ duration: 1 }}
                     >
                         <span className="text-accent font-bold tracking-[0.3em] text-xs uppercase mb-4 block">İLETİŞİM</span>
-                        <h3 className="text-3xl md:text-4xl font-serif font-black mb-10 leading-tight">İletişim Bilgileri</h3>
+                        <h2 className="text-3xl md:text-4xl font-serif font-black mb-10 leading-tight">İletişim Bilgileri</h2>
 
                         <div className="space-y-10 mb-16">
                             {[
@@ -37,7 +37,7 @@ export default function Contact() {
                                         <item.icon size={20} strokeWidth={1.5} />
                                     </div>
                                     <div>
-                                        <h4 className="font-serif font-bold text-lg mb-1 tracking-tight">{item.title}</h4>
+                                        <h3 className="font-serif font-bold text-lg mb-1 tracking-tight">{item.title}</h3>
                                         <p className="text-gray-400 text-sm font-light leading-relaxed max-w-xs transition-colors group-hover:text-white">
                                             {item.text}
                                         </p>
@@ -57,7 +57,7 @@ export default function Contact() {
                         className="bg-white p-6 md:p-8 shadow-[0_40px_80px_rgba(0,0,0,0.16)] rounded-2xl relative"
                     >
                         <div className="absolute top-0 left-0 w-full h-1.5 bg-accent rounded-t-2xl" />
-                        <h3 className="text-3xl font-serif font-black text-primary mb-6 tracking-tight">Harita</h3>
+                        <h2 className="text-3xl font-serif font-black text-primary mb-6 tracking-tight">Harita</h2>
 
                         <div className="relative w-full overflow-hidden rounded-xl border border-gray-100 shadow-md">
                             <iframe

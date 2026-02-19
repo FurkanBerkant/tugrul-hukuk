@@ -11,42 +11,42 @@ import { siteConfig } from "../config/site";
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isOnHero, setIsOnHero] = useState(true);
+    const [headerTheme, setHeaderTheme] = useState<"light" | "dark">("dark");
     const headerRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            const scrollPos = window.scrollY;
+            setIsScrolled(scrollPos > 40);
+
+            // Determine theme based on current section
+            const sections = [
+                { id: "hero", theme: "dark" },
+                { id: "practice-areas", theme: "light" },
+                { id: "about", theme: "light" },
+                { id: "contact", theme: "dark" },
+            ];
+
+            let currentTheme: "light" | "dark" = "dark";
+            const headerHeight = headerRef.current?.offsetHeight ?? 80;
+
+            for (const section of sections) {
+                const el = document.getElementById(section.id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    // If the top of the header is within this section
+                    if (rect.top <= headerHeight / 2 && rect.bottom >= headerHeight / 2) {
+                        currentTheme = section.theme as "light" | "dark";
+                        break;
+                    }
+                }
+            }
+            setHeaderTheme(currentTheme);
         };
-        window.addEventListener("scroll", handleScroll);
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll(); // Initial check
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
-        const heroEl = document.getElementById("hero");
-        if (!heroEl) return;
-
-        let raf = 0;
-        const update = () => {
-            const headerHeight = headerRef.current?.offsetHeight ?? 96;
-            const heroBottom = heroEl.getBoundingClientRect().bottom;
-            // Hero'nun altı header'ın üstünden yukarı çıkınca "hero bitti" say.
-            setIsOnHero(heroBottom > headerHeight);
-        };
-
-        const onScrollOrResize = () => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(update);
-        };
-
-        update();
-        window.addEventListener("scroll", onScrollOrResize, { passive: true });
-        window.addEventListener("resize", onScrollOrResize);
-        return () => {
-            cancelAnimationFrame(raf);
-            window.removeEventListener("scroll", onScrollOrResize);
-            window.removeEventListener("resize", onScrollOrResize);
-        };
     }, []);
 
     const scrollToSection = (href: string) => {
@@ -55,10 +55,13 @@ export default function Header() {
         const target = document.getElementById(id);
         if (!target) return;
 
-        const headerHeight = headerRef.current?.offsetHeight ?? 0;
+        const currentHeader = headerRef.current;
+        if (!currentHeader) return;
+
+        const headerHeight = currentHeader.offsetHeight;
         const rect = target.getBoundingClientRect();
-        // Başlık, hedef bölümün tam üstünü kapatmasın diye küçük bir boşluk bırak.
-        const offset = window.scrollY + rect.top - headerHeight + 8;
+        // Land exactly at the section start minus the header height
+        const offset = window.scrollY + rect.top - headerHeight;
 
         window.scrollTo({
             top: offset,
@@ -73,36 +76,44 @@ export default function Header() {
         { name: "İletişim", href: "#contact" },
     ];
 
+    const isHeaderDark = headerTheme === "dark";
+
     return (
         <>
             <header
                 ref={headerRef}
                 className={clsx(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-                    isOnHero
-                        ? isScrolled
-                            ? "bg-primary/40 backdrop-blur-md border-white/10 py-3"
-                            : "bg-transparent py-5"
-                        : "bg-white/80 backdrop-blur-md shadow-sm border-gray-100 py-3"
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
+                    !isScrolled
+                        ? "bg-transparent py-6 border-transparent"
+                        : isHeaderDark
+                            ? "bg-primary/80 backdrop-blur-lg border-white/10 py-3 shadow-2xl"
+                            : "bg-white/80 backdrop-blur-lg border-gray-100 py-3 shadow-lg"
                 )}
             >
                 <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
                     {/* Logo */}
-                    {/* Logo */}
-                    <Link href="/" className="group">
-                        <Logo isScrolled={!isOnHero} />
-                    </Link>
+                    <button
+                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                        className="group cursor-pointer border-none bg-transparent p-0 active:scale-95 transition-transform"
+                        aria-label="Ana Sayfa"
+                    >
+                        <Logo isScrolled={!isHeaderDark && isScrolled} />
+                    </button>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center space-x-8">
+                    <nav className="hidden md:flex items-center space-x-10">
                         {navLinks.map((link) => (
                             <button
                                 key={link.name}
                                 type="button"
                                 onClick={() => scrollToSection(link.href)}
                                 className={clsx(
-                                    "relative text-sm font-medium cursor-pointer pb-1 transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-200 hover:after:w-full",
-                                    isOnHero ? "text-white/90 hover:text-white" : "text-gray-700"
+                                    "relative text-sm font-bold tracking-widest uppercase cursor-pointer pb-1 transition-all duration-300",
+                                    "after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full",
+                                    isHeaderDark || !isScrolled
+                                        ? "text-white/80 hover:text-accent"
+                                        : "text-primary/70 hover:text-accent"
                                 )}
                             >
                                 {link.name}
@@ -111,12 +122,12 @@ export default function Header() {
                     </nav>
 
                     {/* CTA & Mobile Menu Toggle */}
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-6">
                         <a
                             href={`https://wa.me/${siteConfig.whatsappNumber.replace(/[^0-9]/g, "")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hidden md:flex items-center space-x-2 bg-accent hover:bg-yellow-600 text-white px-5 py-2.5 rounded-full transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm font-semibold"
+                            className="hidden md:flex items-center space-x-2 bg-accent hover:bg-accent/90 text-white px-7 py-3 rounded-none transition-all shadow-xl hover:-translate-y-1 transform active:scale-95 text-xs font-bold tracking-widest uppercase"
                         >
                             <MessageCircle size={18} />
                             <span>WhatsApp</span>
@@ -125,9 +136,11 @@ export default function Header() {
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className={clsx(
-                                "md:hidden p-2 rounded-md transition-colors",
-                                isOnHero ? "text-white" : "text-primary"
+                                "md:hidden p-2 rounded-lg transition-all active:scale-90",
+                                isHeaderDark || !isScrolled ? "text-white hover:bg-white/10" : "text-primary hover:bg-primary/5"
                             )}
+                            aria-label={isMobileMenuOpen ? "Menüyü Kapat" : "Menüyü Aç"}
+                            aria-expanded={isMobileMenuOpen}
                         >
                             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>

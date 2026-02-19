@@ -17,50 +17,49 @@ export default function Logo({ isScrolled, isFooter }: LogoProps) {
             {/* Icon Circle */}
             <div className={clsx(
                 "flex items-center justify-center rounded-full border-2 transition-colors duration-300",
-                isFooter 
-                    ? "w-16 h-16 border-accent bg-transparent" 
+                isFooter
+                    ? "w-16 h-16 border-accent bg-transparent"
                     : "w-12 h-12 md:w-14 md:h-14 border-accent bg-white/10 backdrop-blur-sm"
             )}>
-                <Scale 
-                    size={isFooter ? 32 : 28} 
+                <Scale
+                    size={isFooter ? 32 : 28}
                     className={clsx(
                         "transition-colors",
                         isFooter ? "text-white" : isScrolled ? "text-primary" : "text-white"
-                    )} 
+                    )}
                     strokeWidth={1.5}
                 />
             </div>
 
             {/* Text Stack */}
-            <div className="flex flex-col leading-none">
+            <div className="flex flex-col items-start text-left leading-none">
                 <span
                     className={clsx(
-                        "font-serif font-bold tracking-wide transition-colors",
-                        isFooter ? "text-2xl md:text-3xl" : "text-xl md:text-2xl",
+                        "font-serif font-bold tracking-tight transition-colors",
+                        isFooter ? "text-2xl md:text-3xl" : "text-lg md:text-xl",
                         textColor
                     )}
                 >
                     TUĞRUL HUKUK
                 </span>
 
-                <div className="flex items-center gap-3 my-1">
+                <div className="flex items-center justify-center gap-3 my-1 w-full">
                     <span
                         className={clsx(
-                            "hidden sm:block h-px flex-1 max-w-[36px] bg-accent/70",
+                            "h-[1px] w-8 bg-accent/60",
                             isFooter ? "opacity-80" : "opacity-60"
                         )}
                     />
                     <span
                         className={clsx(
-                            "text-[9px] sm:text-[10px] uppercase tracking-[0.3em]",
-                            subTextColor
+                            "font-serif italic text-[8px] sm:text-[9px] uppercase tracking-wider text-accent",
                         )}
                     >
                         ve
                     </span>
                     <span
                         className={clsx(
-                            "hidden sm:block h-px flex-1 max-w-[36px] bg-accent/70",
+                            "h-[1px] w-8 bg-accent/60",
                             isFooter ? "opacity-80" : "opacity-60"
                         )}
                     />
@@ -68,8 +67,9 @@ export default function Logo({ isScrolled, isFooter }: LogoProps) {
 
                 <span
                     className={clsx(
-                        "font-sans font-semibold tracking-[0.2em] text-accent",
-                        isFooter ? "text-sm md:text-base" : "text-xs md:text-sm"
+                        "font-serif font-bold tracking-tight transition-colors",
+                        isFooter ? "text-2xl md:text-3xl" : "text-lg md:text-xl",
+                        textColor
                     )}
                 >
                     DANIŞMANLIK

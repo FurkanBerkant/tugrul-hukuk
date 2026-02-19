@@ -5,7 +5,8 @@ export default function JsonLd() {
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": siteConfig.firmName,
-        "image": "https://tugrulhukuk.com/hero-bg.jpg",
+        "description": siteConfig.description,
+        "image": `${siteConfig.websiteUrl}/hero-bg.jpg`,
         "url": siteConfig.websiteUrl,
         "telephone": siteConfig.whatsappNumber,
         "address": {
@@ -18,36 +19,26 @@ export default function JsonLd() {
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 41.2867,
-            "longitude": 36.33
+            "latitude": parseFloat(siteConfig.address.latitude),
+            "longitude": parseFloat(siteConfig.address.longitude)
         },
-        "openingHoursSpecification": [
-            {
+        "openingHoursSpecification": siteConfig.workingHours
+            .filter(h => h.opens && h.closes)
+            .map(h => ({
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
-                ],
-                "opens": "09:00",
-                "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "10:00",
-                "closes": "14:00"
-            }
-        ],
+                "dayOfWeek": h.label.includes("Cuma")
+                    ? ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+                    : h.label,
+                "opens": h.opens,
+                "closes": h.closes
+            })),
         "priceRange": "$$"
-    }
+    };
 
     return (
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-    )
+    );
 }
