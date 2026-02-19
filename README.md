@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚖️ Tuğrul Hukuk & Danışmanlık
 
-## Getting Started
+Bu proje, modern bir hukuk bürosu için **Senior Product Manager** gözüyle tasarlanmış, **Vibe Coding** felsefesiyle inşa edilmiş ve her detayı titizlikle işlenmiş premium bir web sitesidir.
 
-First, run the development server:
+## ✨ Nedir Bu "Vibe Coding"?
+Bu site sadece kod yazılarak değil; vizyon, tasarım estetiği ve yapay zeka ortaklığıyla (AI-driven development) hayata geçirildi. Geleneksel yazılım süreçlerinin ötesine geçerek, projenin "ruhuna" ve "hissiyatına" odaklanan bir yaklaşımla geliştirildi.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Öne Çıkan Özellikler
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🎭 Premium Görsellik:** Marka kimliğine uygun altın ve lacivert tonlarında, minimal ve kurumsal estetik.
+- **⚖️ 3D Deneyim:** Sayfanın köşesinde süzülen, performansı optimize edilmiş etkileşimli 3D adalet terazisi.
+- **⚡ Işık Hızında:** Mega-byte'lık görsellerin akıllıca sıkıştırıldığı, refresh sonrası bile takılmayan 60 FPS akıcılık.
+- **🔒 Güvenli Altyapı:** Clickjacking ve siber saldırılara karşı donatılmış güvenlik başlıkları ve gizli değişken (.env) sistemi.
+- **🔍 SEO & Compliance:** Türkiye Barolar Birliği reklam yasağına tam uyumlu metinler ve Google botları için mükemmel JSON-LD altyapısı.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Teknoloji Yığını
+- **Next.js 16 (App Router)**
+- **Three.js & React Three Fiber** (3D Modelleme)
+- **Framer Motion** (Akıcı Animasyonlar)
+- **Tailwind CSS** (Modern Styling)
+- **Lucide Icons** (Minimal İkonografi)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Kurulum
 
-## Learn More
+1. Depoyu kopyalayın.
+2. `npm install` ile bağımlılıkları yükleyin.
+3. `.env` dosyasını oluşturun (Örnek değişkenler `.env` dosyasında mevcuttur).
+4. `npm run dev` ile vibe'ı başlatın.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+**Lead Notu:** Bu proje, kodun sadece bir araç; vizyonun ise asıl güç olduğunun bir kanıtıdır. 🏛️🚀
