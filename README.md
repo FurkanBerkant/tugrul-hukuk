@@ -28,4 +28,4 @@ Bu site sadece kod yazılarak değil; vizyon, tasarım estetiği ve yapay zeka o
 4. `npm run dev` ile vibe'ı başlatın.
 
 ---
-**Lead Notu:** Bu proje, kodun sadece bir araç; vizyonun ise asıl güç olduğunun bir kanıtıdır. 🏛️🚀
+**Not:** Bu proje, kodun sadece bir araç; vizyonun ise asıl güç olduğunun bir kanıtıdır. 🏛️🚀
