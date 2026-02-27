@@ -60,7 +60,7 @@ export default function Hero() {
                 >
                     <Image
                         src="/justice-statue.jpg"
-                        alt="Adalet Heykeli Arka Plan"
+                        alt="Tuğrul Hukuk ve Danışmanlık - Adalet Heykeli ve Samsun Hukuk Bürosu"
                         fill
                         priority
                         quality={85}

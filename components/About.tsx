@@ -22,7 +22,7 @@ export default function About() {
                         <div className="relative aspect-[4/5] overflow-hidden group">
                             <Image
                                 src="/muhammet-fatih-tugrul.png"
-                                alt={`Avukat ${siteConfig.firmName}`}
+                                alt={`Avukat Muhammet Fatih Tuğrul - ${siteConfig.firmName}`}
                                 fill
                                 quality={90}
                                 sizes="(max-width: 1024px) 100vw, 50vw"

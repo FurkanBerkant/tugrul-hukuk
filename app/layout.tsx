@@ -31,10 +31,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: process.env.NEXT_PUBLIC_OG_URL,
-    title: process.env.NEXT_PUBLIC_OG_TITLE,
-    description: process.env.NEXT_PUBLIC_OG_DESCRIPTION,
-    siteName: process.env.NEXT_PUBLIC_OG_SITE_NAME,
+    url: process.env.NEXT_PUBLIC_OG_URL || siteConfig.websiteUrl,
+    title: process.env.NEXT_PUBLIC_OG_TITLE || "Tuğrul Hukuk & Danışmanlık | Samsun Avukat",
+    description: process.env.NEXT_PUBLIC_OG_DESCRIPTION || "Samsun'da boşanma, ceza, miras ve ticaret hukuku alanlarında uzman avukat kadrosuyla profesyonel hukuk hizmeti.",
+    siteName: process.env.NEXT_PUBLIC_OG_SITE_NAME || "Tuğrul Hukuk ve Danışmanlık",
+    images: [
+      {
+        url: `${siteConfig.websiteUrl}/justice-statue.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Tuğrul Hukuk ve Danışmanlık - Adalet Terazisi ve Heykeli",
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: process.env.NEXT_PUBLIC_OG_TITLE || "Tuğrul Hukuk & Danışmanlık | Samsun Avukat",
+    description: process.env.NEXT_PUBLIC_OG_DESCRIPTION || "Samsun'da boşanma, ceza, miras ve ticaret hukuku alanlarında uzman avukat kadrosuyla profesyonel hukuk hizmeti.",
+    images: [`${siteConfig.websiteUrl}/justice-statue.jpg`],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "",
@@ -42,6 +56,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   }
 };
 

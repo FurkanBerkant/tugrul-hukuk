@@ -6,7 +6,7 @@ export default function JsonLd() {
         "@type": "LegalService",
         "name": siteConfig.firmName,
         "description": siteConfig.description,
-        "image": `${siteConfig.websiteUrl}/hero-bg.jpg`,
+        "image": `${siteConfig.websiteUrl}/justice-statue.jpg`,
         "url": siteConfig.websiteUrl,
         "telephone": siteConfig.whatsappNumber,
         "address": {
